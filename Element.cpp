@@ -11,7 +11,8 @@ inline Element<T, default_value>::~Element()
 }
 
 template<typename T, T default_value>
-std::tuple<T>& Element<T, default_value>::operator[](long index)
+T& Element<T, default_value>::operator[](long index)
 {
+	return value;
 	// TODO: insert return statement here
 }

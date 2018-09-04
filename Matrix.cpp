@@ -1,19 +1,19 @@
 #include "Matrix.h"
 
 template<typename T, T default_value>
-inline T Matrix<T, default_value>::size()
+inline long Matrix<T, default_value>::size()
 {
 	return T();
 }
 
 template<typename T, T default_value>
-T* Matrix<T, default_value>::begin()
+tuple_element* Matrix<T, default_value>::begin()
 {
 	return nullptr;
 }
 
 template<typename T, T default_value>
-T* Matrix<T, default_value>::end()
+tuple_element* Matrix<T, default_value>::end()
 {
 	return nullptr;
 }
