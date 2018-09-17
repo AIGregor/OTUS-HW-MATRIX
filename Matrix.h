@@ -1,20 +1,20 @@
 #pragma once
 #include <vector>
-#include "Element.h"
+#include "Row.h"
 
 template <typename T, T default_value>
 class Matrix
 {
-	using tuple_element = std::tuple<long, long, T>;
+	//using tuple_Row = std::tuple<long, long, T>;
 
 public:
-	long size();
-	tuple_element* begin();
-	tuple_element* end();
+	size_t size();
+	Row<T, default_value>::tuple_row* begin();
+	Row<T, default_value>::tuple_row* end();
 
-	Element<T, default_value>& operator[](long index);
+	Row<T, default_value>& operator[](long index);
 
 private:	
-	std::vector<Element<T, default_value>> elements;
+	std::vector<Row<T, default_value>> rows;
 };
 

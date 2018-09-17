@@ -2,11 +2,13 @@
 #include <tuple>
 
 template <typename T, T default_value>
-class Element
+class Row
 {
+	using tuple_row = std::tuple<long, long, T>;
+
 public:
-	Element();
-	~Element();
+	Row();
+	~Row();
 
 	T& operator[](long index);
 	int get_i() { return i; };

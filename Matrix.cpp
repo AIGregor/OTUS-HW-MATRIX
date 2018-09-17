@@ -1,25 +1,27 @@
 #include "Matrix.h"
 
 template<typename T, T default_value>
-inline long Matrix<T, default_value>::size()
-{
-	return T();
+inline size_t Matrix<T, default_value>::size()
+{	
+	return rows.size;
 }
 
 template<typename T, T default_value>
-tuple_element* Matrix<T, default_value>::begin()
+Row<T, default_value>::tuple_row* Matrix<T, default_value>::begin()
 {
 	return nullptr;
 }
 
 template<typename T, T default_value>
-tuple_element* Matrix<T, default_value>::end()
+Row<T, default_value>::tuple_row* Matrix<T, default_value>::end()
 {
 	return nullptr;
 }
 
 template<typename T, T default_value>
-Element<T, default_value>& Matrix<T, default_value>::operator[](long index)
+Row<T, default_value>& Matrix<T, default_value>::operator[](long index)
 {
-	return std::get<0>(elements[index]);
+	if ()
+
+	return std::get<0>(rows[index]);
 }
