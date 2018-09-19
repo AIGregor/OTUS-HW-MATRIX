@@ -30,7 +30,7 @@ public:
 		return value;
 	}
 
-private:
+public:
 	void* current_row;
 
 private:

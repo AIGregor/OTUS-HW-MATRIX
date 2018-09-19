@@ -61,7 +61,7 @@ template<typename T, T default_value>
 Row<T, default_value>& Matrix<T, default_value>::operator[](size_t index)
 {
 	if (index < 0)
-		return;
+		assert(false);
 
 	if (rows.find(index) != rows.end() && index >=0)
 	{

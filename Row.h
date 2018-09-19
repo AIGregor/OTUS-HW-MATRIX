@@ -31,12 +31,13 @@ public:
 		lastIndex = -1;
 		defValue.setValue(default_value);
 	}
+public:
+	void* current_matrix;
 
 private:
 	std::map<size_t, Element<T, default_value>> values;
 	Element<T, default_value> defValue;
-
-	void* current_matrix;
+		
 	long lastIndex;
 };
 
@@ -51,7 +52,7 @@ template<typename T, T default_value>
 inline Element<T, default_value>& Row<T, default_value>::operator[](size_t index)
 {
 	if (index < 0)
-		return;
+		assert(false);
 
 	if (values.find(index) != values.end())
 	{
