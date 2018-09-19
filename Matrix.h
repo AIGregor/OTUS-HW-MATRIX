@@ -15,7 +15,11 @@ public:
 	Row<T, default_value>& operator[](size_t index);
 
 	void saveRow() {
-		rows[lastIndex] = defValue;
+		if (lastIndex < 0)
+			return;
+
+		rows[lastIndex] = defValue;		
+		lastIndex = -1;
 	}
 
 private:	
@@ -56,11 +60,15 @@ std::tuple<long, long, T>* Matrix<T, default_value>::end()
 template<typename T, T default_value>
 Row<T, default_value>& Matrix<T, default_value>::operator[](size_t index)
 {
+	if (index < 0)
+		return;
+
 	if (rows.find(index) != rows.end() && index >=0)
 	{
 		return rows[index];
 	}
-	
+
+	defValue.current_matrix = this;
 	lastIndex = index;
 
 	return defValue;

@@ -21,15 +21,22 @@ public:
 	}
 
 	void saveElement() {
+		if (lastIndex < 0)
+			return;
+
 		values[lastIndex] = defValue;
-		Matrix<T, default_value> matrix;
-		matrix.saveRow();
+		auto matrix = static_cast<Matrix<T, default_value>*>(current_matrix);
+		matrix->saveRow();
+
+		lastIndex = -1;
+		defValue.setValue(default_value);
 	}
 
 private:
 	std::map<size_t, Element<T, default_value>> values;
 	Element<T, default_value> defValue;
 
+	void* current_matrix;
 	long lastIndex;
 };
 
@@ -43,6 +50,9 @@ Row<T, default_value>::Row() : lastIndex(-1)
 template<typename T, T default_value>
 inline Element<T, default_value>& Row<T, default_value>::operator[](size_t index)
 {
+	if (index < 0)
+		return;
+
 	if (values.find(index) != values.end())
 	{
 		return  values[index];
@@ -50,5 +60,6 @@ inline Element<T, default_value>& Row<T, default_value>::operator[](size_t index
 
 	defValue.current_row = this;
 	lastIndex = index;
+
 	return defValue;
 }
