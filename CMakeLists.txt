@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.2)
 
 project(hw-matrix VERSION 0.0.1)
 
-add_executable(hw-matrix_cli matrix.cpp)
+add_executable(hw-matrix_cli matrix.h element.h row.h 
+							 main.cpp)
 
 install(TARGETS hw-matrix_cli RUNTIME DESTINATION bin)
 

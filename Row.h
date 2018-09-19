@@ -1,25 +1,54 @@
 #pragma once
-#include <tuple>
+#include <map>
+#include "Matrix.h"
+#include "Element.h"
 
 template <typename T, T default_value>
 class Row
 {
-	using tuple_row = std::tuple<long, long, T>;
-
 public:
 	Row();
-	~Row();
+	//~Row();
 
-	T& operator[](long index);
-	int get_i() { return i; };
-	int get_j() { return j; };
-	T& get_value() { return value; };
+	Element<T, default_value>& operator[](size_t index);
 
-	void set_i(int i);
-	void set_j(int j);
-	void set_value(const T value);
+	void setIndex(long indx) {
+		lastIndex = indx;
+	}
+
+	size_t getSize() {
+		return values.size();
+	}
+
+	void saveElement() {
+		values[lastIndex] = defValue;
+		Matrix<T, default_value> matrix;
+		matrix.saveRow();
+	}
+
 private:
-	int i;
-	int j;
-	T value;
+	std::map<size_t, Element<T, default_value>> values;
+	Element<T, default_value> defValue;
+
+	long lastIndex;
 };
+
+template<typename T, T default_value>
+Row<T, default_value>::Row() : lastIndex(-1)
+{
+	values = std::map<size_t, Element<T, default_value> >();
+	defValue.setValue(default_value);
+}
+
+template<typename T, T default_value>
+inline Element<T, default_value>& Row<T, default_value>::operator[](size_t index)
+{
+	if (values.find(index) != values.end())
+	{
+		return  values[index];
+	}
+
+	defValue.current_row = this;
+	lastIndex = index;
+	return defValue;
+}
