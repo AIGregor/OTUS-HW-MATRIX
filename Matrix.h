@@ -7,25 +7,37 @@ class Matrix
 {
 public:
 	Matrix();
+	~Matrix() {};
 
 	size_t size();
-	std::tuple<long, long, T>* begin();
-	std::tuple<long, long, T>* end();
+	auto begin();
+	auto end();
 
 	Row<T, default_value>& operator[](size_t index);
 
-	void saveRow() {
+	void saveRow(Row<T, default_value>& row) {
 		if (lastIndex < 0)
 			return;
 
-		rows[lastIndex] = defValue;		
+		rows[lastIndex] = row;
+
 		lastIndex = -1;
+		defValue.clear();
+	}
+
+	void deleteRow() {
+		if (lastIndex < 0)
+			return;
+
+		if (rows[lastIndex].getSize() == 0) {
+			rows.erase(lastIndex);
+		}
 	}
 
 private:	
 	std::map<size_t, Row<T, default_value>> rows;
-
 	Row<T, default_value> defValue;
+
 	long lastIndex;
 };
 
@@ -46,30 +58,30 @@ size_t Matrix<T, default_value>::size()
 }
 
 template<typename T, T default_value>
-std::tuple<long, long, T>* Matrix<T, default_value>::begin()
+auto Matrix<T, default_value>::begin()
 {
-	return nullptr;
+	return std::begin(rows);
 }
 
 template<typename T, T default_value>
-std::tuple<long, long, T>* Matrix<T, default_value>::end()
+auto Matrix<T, default_value>::end()
 {
-	return nullptr;
+	return std::end(rows);
 }
 
 template<typename T, T default_value>
-Row<T, default_value>& Matrix<T, default_value>::operator[](size_t index)
+inline Row<T, default_value>& Matrix<T, default_value>::operator[](size_t index)
 {
 	if (index < 0)
 		assert(false);
 
+	lastIndex = index;
 	if (rows.find(index) != rows.end() && index >=0)
 	{
+		rows[index].current_matrix = this;
 		return rows[index];
 	}
 
 	defValue.current_matrix = this;
-	lastIndex = index;
-
 	return defValue;
 }

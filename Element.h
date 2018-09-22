@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <iostream>
 #include "Row.h"
 
 template <typename T, T default_value>
@@ -7,13 +8,19 @@ class Element
 {
 public:
 	Element();
-	//~Element();
+	~Element() {};
 
 	Element<T, default_value>& operator=(const T& val) {
-		setValue(val);
-
 		auto row = static_cast<Row<T, default_value>*>(current_row);
-		row->saveElement();
+
+		if (val == default_value) 
+		{
+			row->deleteElement();
+			return *this;
+		}
+
+		setValue(val);
+		row->saveElement(*this);
 
 		return *this;
 	}
@@ -40,4 +47,11 @@ private:
 template<typename T, T default_value>
 inline Element<T, default_value>::Element()
 {
+}
+
+template<typename T, T default_value>
+std::ostream& operator<<(std::ostream& os, 
+						const Element<T, default_value>& el) {
+	os << el.getValue();
+	return os;
 }
