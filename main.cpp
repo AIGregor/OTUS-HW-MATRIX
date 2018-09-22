@@ -75,8 +75,10 @@ int main()
 		std::cout << std::endl;
 	}
 
+	// output matrix full cell count
 	std::cout << matrix.size() << std::endl;
-
+	
+	// output full cells
 	for (auto r : matrix)
 	{
 		int x = r.first;
