@@ -1,8 +1,7 @@
 // testMatrix.cpp : Defines the entry point for the console application.
 //
 #include "gtest/gtest.h"
-
-#include "../Matrix.h"
+#include "Matrix.h"
 
 class CMatrixTest : public ::testing::Test {
 };

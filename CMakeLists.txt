@@ -6,13 +6,14 @@ else()
    project(hw_matrix VERSION 0.0.1)
 endif()
 
-file(GLOB HEADER_FILES Matrix.h Element.h Row.h)
+file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.h)
+set(GLOB MAIN_PRG ${PROJECT_SOURCE_DIR}/)
 
-add_executable(matrix_cli ${HEADER_FILES} main.cpp)
+add_executable(matrix_cli main.cpp ${HEADER_FILES})
 
 set_target_properties(matrix_cli PROPERTIES
   CXX_STANDARD 14
-  CXX_STANDARD_REQUIRED ON  
+  CXX_STANDARD_REQUIRED ON 
 )
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
