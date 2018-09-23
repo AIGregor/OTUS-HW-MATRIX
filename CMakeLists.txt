@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.2)
 
 if (DEFINED ENV{TRAVIS_BUILD_NUMBER})
-   project(matrix VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+   project(hw_matrix VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 else()
-   project(matrix VERSION 0.0.1)
+   project(hw_matrix VERSION 0.0.1)
 endif()
 
-add_executable(matrix_cli matrix.h element.h row.h 
+add_executable(matrix_cli Matrix.h element.h row.h 
 							 main.cpp)
 
 set_target_properties(matrix_cli PROPERTIES
@@ -32,5 +32,6 @@ set(CPACK_PACKAGE_CONTACT real.garik@gmail.com)
 
 include (CPack)
 
-enable_testing()
 add_subdirectory(test)
+
+enable_testing()
