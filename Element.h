@@ -11,16 +11,16 @@ public:
 	~Element() {};
 
 	Element<T, default_value>& operator=(const T& val) {
-		auto row = static_cast<Row<T, default_value>*>(current_row);
+		auto row_cur = static_cast<Row<T, default_value>*>(current_row);
 
 		if (val == default_value) 
 		{
-			row->deleteElement();
+			row_cur->deleteElement();
 			return *this;
 		}
 
 		setValue(val);
-		row->saveElement(*this);
+		row_cur->saveElement(*this);
 
 		return *this;
 	}
