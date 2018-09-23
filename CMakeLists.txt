@@ -6,7 +6,7 @@ else()
    project(hw_matrix VERSION 0.0.1)
 endif()
 
-add_executable(matrix_cli Matrix.h element.h row.h 
+add_executable(matrix_cli Matrix.h Element.h Row.h 
 							 main.cpp)
 
 set_target_properties(matrix_cli PROPERTIES
