@@ -13,15 +13,15 @@ endif()
 
 find_package(GTest REQUIRED)
 
-add_executable(matrix_test testMatrix.cpp)
+add_executable(matrix_test_cli testMatrix.cpp)
 
-set_target_properties(matrix_test PROPERTIES
+set_target_properties(matrix_test_cli PROPERTIES
 INCLUDE_DIRECTORIES "${GTEST_INCLUDE_DIRS};${INCLUDE_DIR}"
 )
 
-target_link_libraries(matrix_test ${GTEST_LIBRARIES} )
+target_link_libraries(matrix_test_cli ${GTEST_LIBRARIES} )
 
-add_test(CheckSize matrix_test)
-add_test(CheckAddValue matrix_test)
-add_test(CheckRemoveValue matrix_test)
-add_test(CheckFullCells matrix_test)
+add_test(CheckSize 			matrix_test_cli)
+add_test(CheckAddValue		matrix_test_cli)
+add_test(CheckRemoveValue 	matrix_test_cli)
+add_test(CheckFullCells 	matrix_test_cli)
