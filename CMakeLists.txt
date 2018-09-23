@@ -17,7 +17,7 @@ set_target_properties(matrix_cli PROPERTIES
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 	set_target_properties(matrix_cli PROPERTIES COMPILE_OPTIONS -W3)
 else()
-	set_target_properties(matrix_cli PROPERTIES COMPILE_OPTIONS -Wpedantic -Wall -Wextra -Wdeprecated)
+	set_target_properties(matrix_cli PROPERTIES COMPILE_OPTIONS -Wpedantic -Wall -Wextra)
 endif()
 							 
 install(TARGETS matrix_cli RUNTIME DESTINATION bin)
