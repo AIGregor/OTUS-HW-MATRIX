@@ -1,10 +1,28 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(hw-matrix VERSION 0.0.1)
+if (DEFINED ENV{TRAVIS_BUILD_NUMBER})
+   project(hw-matrix VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+else()
+   project(hw-matrix VERSION 0.0.1)
+endif()
 
 add_executable(hw-matrix_cli matrix.h element.h row.h 
 							 main.cpp)
 
+set_target_properties(hw-matrix_cli PROPERTIES
+  CXX_STANDARD 14
+  CXX_STANDARD_REQUIRED ON  
+)
+
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+	set_target_properties(hw-matrix_cli PROPERTIES COMPILE_OPTIONS -W3)
+else()
+	set_target_properties(hw-matrix_cli PROPERTIES COMPILE_OPTIONS -Wpedantic -Wall -Wextra)
+endif()
+
+enable_testing()
+add_subdirectory(test)
+							 
 install(TARGETS hw-matrix_cli RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
