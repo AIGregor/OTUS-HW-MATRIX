@@ -6,14 +6,18 @@ else()
    project(hw_matrix VERSION 0.0.1)
 endif()
 
-file(GLOB HEADER_FILES ${PROJECT_SOURCE_DIR}/*.h)
-set(GLOB MAIN_PRG ${PROJECT_SOURCE_DIR}/)
+set(INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
+set(SRC_DIR ${PROJECT_SOURCE_DIR}/src)
 
-add_executable(matrix_cli main.cpp ${HEADER_FILES})
+file(GLOB HEADER_FILES	${INCLUDE_DIR}/*.h)
+file(GLOB SRC_FILES		${SRC_DIR}/*.cpp)
+
+add_executable(matrix_cli ${HEADER_FILES} ${SRC_FILES})
 
 set_target_properties(matrix_cli PROPERTIES
-  CXX_STANDARD 14
-  CXX_STANDARD_REQUIRED ON 
+	CXX_STANDARD 14
+	CXX_STANDARD_REQUIRED ON
+	INCLUDE_DIRECTORIES ${INCLUDE_DIR}  
 )
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")

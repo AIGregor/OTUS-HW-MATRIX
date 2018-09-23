@@ -12,7 +12,6 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 endif()
 
 find_package(GTest REQUIRED)
-include_directories(${MAIN_PRG})
 
 add_executable(matrix_test_cli testMatrix.cpp ${HEADER_FILES})
 
