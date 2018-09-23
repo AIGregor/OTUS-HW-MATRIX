@@ -13,7 +13,7 @@ endif()
 
 find_package(GTest REQUIRED)
 
-add_executable(matrix_test_cli testMatrix.cpp)
+add_executable(matrix_test_cli testMatrix.cpp ${HEADER_FILES})
 
 set_target_properties(matrix_test_cli PROPERTIES
 INCLUDE_DIRECTORIES "${GTEST_INCLUDE_DIRS};${INCLUDE_DIR}"

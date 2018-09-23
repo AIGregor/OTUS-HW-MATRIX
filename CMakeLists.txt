@@ -6,8 +6,9 @@ else()
    project(hw_matrix VERSION 0.0.1)
 endif()
 
-add_executable(matrix_cli Matrix.h Element.h Row.h 
-							 main.cpp)
+file(GLOB HEADER_FILES Matrix.h Element.h Row.h)
+
+add_executable(matrix_cli ${HEADER_FILES} main.cpp)
 
 set_target_properties(matrix_cli PROPERTIES
   CXX_STANDARD 14
