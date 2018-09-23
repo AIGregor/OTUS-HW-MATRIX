@@ -21,10 +21,6 @@ INCLUDE_DIRECTORIES "${GTEST_INCLUDE_DIRS};${INCLUDE_DIR}"
 
 target_link_libraries(matrix_test_cli ${GTEST_LIBRARIES} )
 
-if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-	target_link_libraries(matrix_test pthread)
-endif()
-
 add_test(CheckSize 			matrix_test_cli)
 add_test(CheckAddValue		matrix_test_cli)
 add_test(CheckRemoveValue 	matrix_test_cli)
