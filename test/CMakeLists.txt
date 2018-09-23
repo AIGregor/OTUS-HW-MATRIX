@@ -16,7 +16,7 @@ find_package(GTest REQUIRED)
 add_executable(matrix_test testMatrix.cpp)
 
 set_target_properties(matrix_test PROPERTIES
-INCLUDE_DIRECTORIES "${GTEST_INCLUDE_DIRS}"
+INCLUDE_DIRECTORIES "${GTEST_INCLUDE_DIRS};${INCLUDE_DIR}"
 )
 
 target_link_libraries(matrix_test ${GTEST_LIBRARIES} )
