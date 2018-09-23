@@ -3,6 +3,8 @@
 #include "Matrix.h"
 #include "Element.h"
 
+template <typename T, T default_value> class Matrix;
+
 template <typename T, T default_value>
 class Row
 {
@@ -32,8 +34,8 @@ public:
 			return;
 
 		values[lastIndex] = element;
-		auto matrix = static_cast<Matrix<T, default_value>*>(current_matrix);
-		matrix->saveRow(*this);
+		auto matrix_cur = static_cast<Matrix<T, default_value>*>(current_matrix);
+		matrix_cur->saveRow(*this);
 
 		lastIndex = -1;
 	}

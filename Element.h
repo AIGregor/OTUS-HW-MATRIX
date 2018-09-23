@@ -3,6 +3,8 @@
 #include <iostream>
 #include "Row.h"
 
+template <typename T, T default_value> class Row;
+
 template <typename T, T default_value>
 class Element
 {
