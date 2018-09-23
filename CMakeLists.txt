@@ -19,6 +19,9 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 else()
 	set_target_properties(matrix_cli PROPERTIES COMPILE_OPTIONS -Wpedantic -Wall -Wextra)
 endif()
+
+enable_testing()
+add_subdirectory(test)
 							 
 install(TARGETS matrix_cli RUNTIME DESTINATION bin)
 
@@ -31,7 +34,3 @@ set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 set(CPACK_PACKAGE_CONTACT real.garik@gmail.com)
 
 include (CPack)
-
-add_subdirectory(test)
-
-enable_testing()
